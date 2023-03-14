@@ -1,6 +1,6 @@
 const likesData = 
   {
-    "item_id": "1"
+    item_id: 1
   }
 
 const commentsData = 
