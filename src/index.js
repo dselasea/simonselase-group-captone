@@ -2,7 +2,7 @@ import { getPokemons } from './modules/api.js';
 import './styles.css';
 
 const pokemonsContainer = document.getElementById('pokemons-container');
-console.log(pokemonsContainer);
+
 const displayPokemons = (pokemon) => {
   const li = document.createElement('li');
   li.classList.add('pokemon-list');
