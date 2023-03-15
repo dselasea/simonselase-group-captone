@@ -62,10 +62,10 @@ const displayCommentsPopup = (itemId) => {
   <span id="close">X</span>
   <div class="comments">
   <img src='https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${itemId}.png'>
-    <h4>Comments <span id="comment-count"></span></h4>
-    <ul id="comment-list">
-    </ul>
   </div>
+  <h4>Comments <span id="comment-count"></span></h4>
+  <ul id="comment-list">
+  </ul>
   <form id=${itemId}>
     <h4>Add a comment</h4>
     <div class="form-control">
