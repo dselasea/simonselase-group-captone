@@ -1,14 +1,4 @@
-const likesData = {
-  item_id: 1,
-};
-
-const comment = {
-  item_id: 1,
-  username: 'Khemikal',
-  comment: 'Hi from me again',
-};
-
-const baseUrl = 'https://us-central1-involvement-api.cloudfunctions.net/capstoneApi/apps/u2hplAfN6gX3LdTPlmsr';
+const baseUrl = 'https://us-central1-involvement-api.cloudfunctions.net/capstoneApi/apps/UFZo6TtTAGjI2DTYvdQ7';
 
 export const postLikes = async (likes) => {
   const response = await fetch(`${baseUrl}/likes`, {
@@ -25,12 +15,12 @@ export const postLikes = async (likes) => {
 
 export const getLikes = async () => {
   const response = await fetch(`${baseUrl}/likes`);
-  const data = await response.json();
+  const data = await response.text();
   return data;
 };
 
 export const postComment = async (comment) => {
-  const response = await fetch('https://us-central1-involvement-api.cloudfunctions.net/capstoneApi/apps/u2hplAfN6gX3LdTPlmsr/comments',
+  const response = await fetch(`${baseUrl}/comments`,
     {
       method: 'POST',
       headers: {
@@ -42,8 +32,8 @@ export const postComment = async (comment) => {
   return data;
 };
 
-const getComment = async (itemId) => {
-  const response = await fetch(`https://us-central1-involvement-api.cloudfunctions.net/capstoneApi/apps/u2hplAfN6gX3LdTPlmsr/comments?item_id=${itemId}`,
+export const getComment = async (itemId) => {
+  const response = await fetch(`${baseUrl}/comments?item_id=${itemId}`,
     {
       method: 'GET',
       headers: {
@@ -54,8 +44,3 @@ const getComment = async (itemId) => {
   const data = await response.json();
   return data;
 };
-
-postLikes(likesData);
-getLikes();
-postComment(comment);
-getComment(1);
