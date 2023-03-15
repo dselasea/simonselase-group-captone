@@ -28,10 +28,13 @@ const displayPokemons = (pokemon) => {
   const hearIcon = document.createElement('span');
   hearIcon.innerHTML = '<i class="fa-regular fa-heart"></i>';
   const info = document.createElement('span');
+  info.setAttribute('id', `like-${pokemon.id}`);
   info.innerText = `Likes ${pokemon.likes > 0 ? pokemon.likes : ''}`;
   likeEl.appendChild(hearIcon);
   likeEl.appendChild(info);
   likeEl.addEventListener('click', () => {
+    const el = document.getElementById(`like-${pokemon.id}`);
+    console.log('el', el);
     addNewLike(pokemon.id);
   });
 
