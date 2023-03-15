@@ -17,5 +17,6 @@ export const getPokemons = async () => {
     type: pokemon.types?.map((t) => t.type.name).join(','),
     abilities: pokemon.abilities?.map((a) => a.ability.name).join(','),
     moves: pokemon.moves?.map((m) => m.move.name).join(','),
+    likes: 0,
   }));
 };
