@@ -59,15 +59,16 @@ const displayCommentsPopup = (item_id) => {
   pokemons.forEach((pokemon) => displayPokemons(pokemon));
 })();
 
-const getComments = async (item_id) => {
-  const comments = await getComment(item_id);
+const postComments = async (item_id, username, comment) => {
+  const comments = await postComment({"item_id": item_id, "username" : username, "comment": comment});
   return comments;
 }
 
-const postComments = async (item_id, username, comment) => {
-  const comments = await getComment(item_id, username, comment);
-  console.log(item_id, username, comment)
-  console.log(comments);
+const getComments = async (itemId) => {
+  const comments = await getComment(itemId);
+  comments.forEach((comment) => {
+    console.log(comment.comment);
+  })
   return comments;
 }
 
@@ -75,6 +76,7 @@ pokemonsContainer.addEventListener('click', (e) => {
   if(e.target.className === 'btn'){
     commentPopUp.classList.add('open');
     displayCommentsPopup(e.target.id);
+    getComments(e.target.id);
   }
 })
 
