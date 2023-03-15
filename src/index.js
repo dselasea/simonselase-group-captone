@@ -3,13 +3,14 @@ import '@fortawesome/fontawesome-free/js/fontawesome.js';
 import '@fortawesome/fontawesome-free/js/solid.js';
 import '@fortawesome/fontawesome-free/js/regular.js';
 import { getPokemons } from './modules/api.js';
-import { postComment, getComment, getLikes, postLikes } from './modules/involvement.js';
+import {
+  postComment, getComment, getLikes, postLikes,
+} from './modules/involvement.js';
 
 const pokemonsContainer = document.getElementById('pokemons-container');
 const commentPopUp = document.querySelector('.popup');
 
 const addNewLike = async (id) => {
-  // console.log('id', id);
   await postLikes({ item_id: id });
 };
 
@@ -40,6 +41,8 @@ const displayPokemons = (pokemon) => {
   const commentIcon = document.createElement('i');
   commentIcon.classList.add('fa-regular', 'fa-comment');
   const commentBtn = document.createElement('button');
+  commentBtn.className = 'btn';
+  commentBtn.id = pokemon.id;
   commentBtn.innerText = 'Comments';
   commentEl.appendChild(commentIcon);
   commentEl.appendChild(commentBtn);
@@ -58,8 +61,10 @@ const displayCommentsPopup = (itemId) => {
   <div class="popup-window">
   <span id="close">X</span>
   <div class="comments">
-    <h4>Comments <span>9</span></h4>
-    <p><span>03/11/2021</span> I'd love to buy it!</p>
+  <img src='https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${itemId}.png'>
+    <h4>Comments <span id="comment-count"></span></h4>
+    <ul id="comment-list">
+    </ul>
   </div>
   <form id=${itemId}>
     <h4>Add a comment</h4>
@@ -69,7 +74,7 @@ const displayCommentsPopup = (itemId) => {
     <div class="form-control">
       <textarea name="comment" id="comment" cols="30" rows="10">Your Insights</textarea>
     </div>
-    <input type="submit" value="Comment" id="submit" class="btn"/>
+    <input type="submit" value="Comment" id="postcomment" class="btn"/>
   </form>
 </div>
   `;
@@ -77,7 +82,7 @@ const displayCommentsPopup = (itemId) => {
 
 (async () => {
   const pokemons = await getPokemons();
-  const likes = await getLikes();
+  const likes = JSON.parse(await getLikes() ? await getLikes() : '[]');
 
   pokemons.forEach((pokemon) => {
     likes.forEach((like) => {
@@ -91,16 +96,22 @@ const displayCommentsPopup = (itemId) => {
   pokemons.forEach((pokemon) => displayPokemons(pokemon));
 })();
 
-const postComments = async (item_id, username, comment) => {
-  const comments = await postComment({ item_id, username, comment });
+const postComments = async (itemId, username, comment) => {
+  const comments = await postComment({ item_id: itemId, username, comment });
   return comments;
 };
 
 const getComments = async (itemId) => {
-  const comments = await getComment(itemId);
+  const commentCount = document.querySelector('#comment-count');
+  const comments = await getComment(itemId) || [];
+  const commentList = document.querySelector('#comment-list');
+  let htmlList = '';
+  commentCount.innerHTML = comments.length || 0;
   comments.forEach((comment) => {
-    console.log(comment);
+    htmlList += `<li>${comment.creation_date} ${comment.username} ${comment.comment}</li>`;
   });
+
+  commentList.innerHTML = htmlList;
   return comments;
 };
 
@@ -122,8 +133,10 @@ commentPopUp.addEventListener('click', (e) => {
 commentPopUp.addEventListener('click', (e) => {
   const userName = document.querySelector('#name');
   const userComment = document.querySelector('#comment');
-  if (e.target.id === 'submit') {
+  if (e.target.id === 'postcomment') {
     postComments(e.target.parentElement.id, userName.value, userComment.value);
     e.preventDefault();
+    userName.value = '';
+    userComment.value = '';
   }
 });

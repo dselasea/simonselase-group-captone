@@ -4,7 +4,7 @@ export const postLikes = async (likes) => {
   const response = await fetch(`${baseUrl}/likes`, {
     method: 'POST',
     headers: {
-      'Content-Type': 'application/text',
+      'Content-Type': 'application/json',
     },
     body: JSON.stringify(likes),
   });
@@ -15,7 +15,7 @@ export const postLikes = async (likes) => {
 
 export const getLikes = async () => {
   const response = await fetch(`${baseUrl}/likes`);
-  const data = await response.json();
+  const data = await response.text();
   return data;
 };
 
@@ -24,12 +24,11 @@ export const postComment = async (comment) => {
     {
       method: 'POST',
       headers: {
-        'Content-Type': 'application/text',
+        'Content-Type': 'application/json',
       },
       body: JSON.stringify(comment),
     });
   const data = await response.text();
-  console.log(data);
   return data;
 };
 
