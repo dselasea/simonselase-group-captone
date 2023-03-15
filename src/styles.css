@@ -35,6 +35,10 @@ a {
   margin: 0 auto;
 }
 
+.btn {
+  padding: 0.8rem 1rem;
+}
+
 .navigation,
 .nav-items {
   display: flex;
@@ -51,4 +55,38 @@ a {
 
 .main-content {
   height: 80vh;
+}
+
+.popup {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  background-color: #b1be3984;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.popup-window {
+  background-color: #a7b723;
+  width: 50%;
+  padding: 2rem;
+}
+
+.close {
+  float: right;
+  cursor: pointer;
+}
+
+.form-control {
+  margin: 1rem 0;
+}
+
+.form-control input,
+.form-control textarea {
+  padding: 0.8rem 1rem;
+  width: 100%;
 }
