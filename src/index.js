@@ -13,6 +13,7 @@ const addNewLike = async (id) => {
 };
 
 const displayPokemons = (pokemon) => {
+  let likesCount = pokemon.likes;
   const li = document.createElement('li');
   li.classList.add('pokemon-list');
 
@@ -29,12 +30,13 @@ const displayPokemons = (pokemon) => {
   hearIcon.innerHTML = '<i class="fa-regular fa-heart"></i>';
   const info = document.createElement('span');
   info.setAttribute('id', `like-${pokemon.id}`);
-  info.innerText = `Likes ${pokemon.likes > 0 ? pokemon.likes : ''}`;
+  info.innerText = `Likes ${likesCount > 0 ? likesCount : ''}`;
   likeEl.appendChild(hearIcon);
   likeEl.appendChild(info);
   likeEl.addEventListener('click', () => {
+    likesCount += 1;
     const el = document.getElementById(`like-${pokemon.id}`);
-    console.log('el', el);
+    el.innerText = `Likes ${likesCount}`;
     addNewLike(pokemon.id);
   });
 
