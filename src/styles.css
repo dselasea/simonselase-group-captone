@@ -8,6 +8,8 @@ body {
   font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
   background-color: #f3f3f3;
   color: #333;
+  border: 2px solid red;
+  position: relative;
 }
 
 ul li {
@@ -69,14 +71,6 @@ a {
   grid-gap: 30px;
 }
 
-@media screen and (min-width: 768px) {
-  #pokemons-container {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    grid-gap: 30px;
-  }
-}
-
 .pokemon-list {
   background: #fff;
   padding: 24px;
@@ -101,13 +95,14 @@ a {
   color: white;
   display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: flex-start;
 }
 
 .popup-window {
   background-color: #a7b723;
   width: 50%;
   padding: 2rem;
+  margin-top: 2rem;
 }
 
 .close {
@@ -123,4 +118,12 @@ a {
 .form-control textarea {
   padding: 0.8rem 1rem;
   width: 100%;
+}
+
+@media screen and (min-width: 768px) {
+  #pokemons-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 30px;
+  }
 }
