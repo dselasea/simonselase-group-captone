@@ -1,8 +1,10 @@
+const baseUrl = 'https://us-central1-involvement-api.cloudfunctions.net/capstoneApi/apps/UFZo6TtTAGjI2DTYvdQ7';
+
 export const postLikes = async (likes) => {
-  const response = await fetch('https://us-central1-involvement-api.cloudfunctions.net/capstoneApi/apps/UFZo6TtTAGjI2DTYvdQ7/likes', {
+  const response = await fetch(`${baseUrl}/likes`, {
     method: 'POST',
     headers: {
-      'Content-Type': 'application/json',
+      'Content-Type': 'application/text',
     },
     body: JSON.stringify(likes),
   });
@@ -12,23 +14,17 @@ export const postLikes = async (likes) => {
 };
 
 export const getLikes = async () => {
-  const response = await fetch('https://us-central1-involvement-api.cloudfunctions.net/capstoneApi/apps/UFZo6TtTAGjI2DTYvdQ7/likes',
-    {
-      method: 'GET',
-      headers: {
-        Accept: 'application/json',
-      },
-    });
+  const response = await fetch(`${baseUrl}/likes`);
   const data = await response.json();
   return data;
 };
 
 export const postComment = async (comment) => {
-  const response = await fetch('https://us-central1-involvement-api.cloudfunctions.net/capstoneApi/apps/UFZo6TtTAGjI2DTYvdQ7/comments',
+  const response = await fetch(`${baseUrl}/comments`,
     {
       method: 'POST',
       headers: {
-        'Content-Type': 'application/json',
+        'Content-Type': 'application/text',
       },
       body: JSON.stringify(comment),
     });
@@ -38,7 +34,7 @@ export const postComment = async (comment) => {
 };
 
 export const getComment = async (itemId) => {
-  const response = await fetch(`https://us-central1-involvement-api.cloudfunctions.net/capstoneApi/apps/UFZo6TtTAGjI2DTYvdQ7/comments?item_id=${itemId}`,
+  const response = await fetch(`${baseUrl}/comments?item_id=${itemId}`,
     {
       method: 'GET',
       headers: {
