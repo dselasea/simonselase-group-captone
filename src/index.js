@@ -1,10 +1,9 @@
 import './styles.css';
-import './modules/involvement.js';
+import { postComment, getComment } from './modules/involvement.js';
 import '@fortawesome/fontawesome-free/js/fontawesome.js';
 import '@fortawesome/fontawesome-free/js/solid.js';
 import '@fortawesome/fontawesome-free/js/regular.js';
 import { getPokemons } from './modules/api.js';
-import { postLikes, postComment, getLikes, getComment } from './modules/involvement.js';
 
 const pokemonsContainer = document.getElementById('pokemons-container');
 const commentPopUp = document.querySelector('.popup');
@@ -31,7 +30,7 @@ const displayPokemons = (pokemon) => {
   pokemonsContainer.appendChild(li);
 };
 
-const displayCommentsPopup = (item_id) => {
+const displayCommentsPopup = (itemId) => {
   commentPopUp.innerHTML = `
   <div class="popup-window">
   <span id="close">X</span>
@@ -39,7 +38,7 @@ const displayCommentsPopup = (item_id) => {
     <h4>Comments <span>9</span></h4>
     <p><span>03/11/2021</span> I'd love to buy it!</p>
   </div>
-  <form id=${item_id}>
+  <form id=${itemId}>
     <h4>Add a comment</h4>
     <div class="form-control">
       <input type="text" placeholder="Your name" id="name" class="name" />
@@ -50,8 +49,8 @@ const displayCommentsPopup = (item_id) => {
     <input type="submit" value="Comment" id="submit" class="btn"/>
   </form>
 </div>
-  `
-}
+  `;
+};
 
 (async () => {
   const pokemons = await getPokemons();
@@ -60,43 +59,38 @@ const displayCommentsPopup = (item_id) => {
 })();
 
 const postComments = async (item_id, username, comment) => {
-  const comments = await postComment({"item_id": item_id, "username" : username, "comment": comment});
+  const comments = await postComment({ item_id, username, comment });
   return comments;
-}
+};
 
 const getComments = async (itemId) => {
   const comments = await getComment(itemId);
   comments.forEach((comment) => {
-    console.log(comment.comment);
-  })
+    console.log(comment);
+  });
   return comments;
-}
+};
 
 pokemonsContainer.addEventListener('click', (e) => {
-  if(e.target.className === 'btn'){
+  if (e.target.className === 'btn') {
     commentPopUp.classList.add('open');
     displayCommentsPopup(e.target.id);
     getComments(e.target.id);
   }
-})
+});
 
 commentPopUp.addEventListener('click', (e) => {
-  if(e.target.id === 'close') {
+  if (e.target.id === 'close') {
     commentPopUp.classList.remove('open');
   }
-})
+});
 
 // Form submission
 commentPopUp.addEventListener('click', (e) => {
   const userName = document.querySelector('#name');
   const userComment = document.querySelector('#comment');
-  if(e.target.id === 'submit') {
+  if (e.target.id === 'submit') {
     postComments(e.target.parentElement.id, userName.value, userComment.value);
     e.preventDefault();
   }
-})
-
-
-
-
-
+});

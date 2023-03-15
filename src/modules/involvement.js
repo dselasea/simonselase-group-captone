@@ -25,14 +25,15 @@ export const getLikes = async () => {
 
 export const postComment = async (comment) => {
   const response = await fetch('https://us-central1-involvement-api.cloudfunctions.net/capstoneApi/apps/UFZo6TtTAGjI2DTYvdQ7/comments',
-  {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify(comment),
-  });
+    {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(comment),
+    });
   const data = await response.text();
+  console.log(data);
   return data;
 };
 
