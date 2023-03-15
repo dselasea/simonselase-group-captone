@@ -14,9 +14,7 @@ const displayPokemons = (pokemon) => {
     <div>
       <img class="pokemon-img" src=${pokemon.image} alt=${pokemon.name} />
       <p>${pokemon.name} - ${pokemon.type}</p>
-<<<<<<< HEAD
       
-=======
       <p>
         <i class="fa-regular fa-heart"></i> Likes ${5}
       </p>
@@ -26,7 +24,6 @@ const displayPokemons = (pokemon) => {
       </p>
 
 
->>>>>>> ff5c9f82e280febfe2470061507622d26aeff681
     </div>
   `;
 
