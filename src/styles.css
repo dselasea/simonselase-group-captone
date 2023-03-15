@@ -8,7 +8,6 @@ body {
   font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
   background-color: #f3f3f3;
   color: #333;
-  border: 2px solid red;
   position: relative;
 }
 
@@ -93,9 +92,13 @@ a {
   bottom: 0;
   background-color: #b1be3984;
   color: white;
-  display: flex;
+  display: none;
   justify-content: center;
   align-items: flex-start;
+}
+
+.popup.open {
+  display: flex;
 }
 
 .popup-window {
@@ -105,7 +108,7 @@ a {
   margin-top: 2rem;
 }
 
-.close {
+#close {
   float: right;
   cursor: pointer;
 }
