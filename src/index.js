@@ -30,6 +30,7 @@ const displayPokemons = (pokemon) => {
   p.innerText = `${pokemon.name}-${pokemon.type}`;
 
   const actionWrapper = document.createElement('div');
+  actionWrapper.className = 'btn-container';
   const likeEl = document.createElement('span');
   const hearIcon = document.createElement('span');
   hearIcon.innerHTML = '<i class="fa-regular fa-heart"></i>';
@@ -47,7 +48,7 @@ const displayPokemons = (pokemon) => {
 
   const commentEl = document.createElement('span');
   const commentIcon = document.createElement('i');
-  commentIcon.classList.add('fa-regular', 'fa-comment');
+  // commentIcon.classList.add('fa-regular', 'fa-comment');
   const commentBtn = document.createElement('button');
   commentBtn.className = 'btn';
   commentBtn.id = pokemon.id;
@@ -67,7 +68,7 @@ const displayPokemons = (pokemon) => {
 const displayCommentsPopup = (itemId) => {
   commentPopUp.innerHTML = `
   <div class="popup-window">
-  <span id="close">X</span>
+  <i class="fa-solid fa-x" id="close"></i>
   <div class="comments">
   <img src='https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${itemId}.png'>
   </div>
@@ -80,7 +81,7 @@ const displayCommentsPopup = (itemId) => {
       <input type="text" placeholder="Your name" id="name" class="name" />
     </div>
     <div class="form-control">
-      <textarea name="comment" id="comment" cols="30" rows="10">Your Insights</textarea>
+      <textarea name="comment" id="comment" cols="30" rows="10" placeholder="Your Insights"></textarea>
     </div>
     <input type="submit" value="Comment" id="postcomment" class="btn"/>
   </form>
@@ -151,8 +152,17 @@ commentPopUp.addEventListener('click', (e) => {
   const userComment = document.querySelector('#comment');
   if (e.target.id === 'postcomment') {
     postComments(e.target.parentElement.id, userName.value, userComment.value);
+    getComments(e.target.parentElement.id);
     e.preventDefault();
     userName.value = '';
     userComment.value = '';
+  }
+});
+
+commentPopUp.addEventListener('click', (e) => {
+  if (e.target.id === 'postcomment') {
+    setTimeout(() => {
+      getComments(e.target.parentElement.id);
+    }, 1000);
   }
 });
