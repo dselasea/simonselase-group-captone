@@ -135,8 +135,15 @@ commentPopUp.addEventListener('click', (e) => {
   const userComment = document.querySelector('#comment');
   if (e.target.id === 'postcomment') {
     postComments(e.target.parentElement.id, userName.value, userComment.value);
+    getComments(e.target.parentElement.id);
     e.preventDefault();
     userName.value = '';
     userComment.value = '';
+  }
+});
+
+commentPopUp.addEventListener('click', (e) => {
+  if (e.target.id === 'postcomment') {
+    getComments(e.target.parentElement.id);
   }
 });
