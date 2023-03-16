@@ -24,4 +24,13 @@ describe('Counts comments in pokemon cards', () => {
     expect(countElements).toBe(4);
     expect(countElements).toEqual(4);
   });
+
+  test('It should return 0 of comments in comment-list', () => {
+    document.body.innerHTML = '<ul id="comment-list"></ul>';
+
+    const comments = document.getElementById('comment-list');
+    const countElements = commentCounter(comments);
+    expect(countElements).toBe(0);
+    expect(countElements).toEqual(0);
+  });
 });

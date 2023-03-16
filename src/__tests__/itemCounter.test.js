@@ -23,4 +23,13 @@ describe('Pokemon counter', () => {
     expect(count).toBe(3);
     expect(count).toEqual(3);
   });
+
+  test('It should returns 0 element in #pokemons-container', () => {
+    document.body.innerHTML = '<ul id="pokemons-container"></ul>';
+
+    const pokemonContainer = document.getElementById('pokemons-container');
+    const count = itemCounter(pokemonContainer);
+    expect(count).toBe(0);
+    expect(count).toEqual(0);
+  });
 });
