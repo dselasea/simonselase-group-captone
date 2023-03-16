@@ -139,7 +139,7 @@ pokemonsContainer.addEventListener('click', (e) => {
 });
 
 commentPopUp.addEventListener('click', (e) => {
-  if (e.target.id === 'close') {
+  if (e.target.parentElement.id === 'close' || e.target.id === 'close') {
     commentPopUp.classList.remove('open');
     document.body.style.margin = '';
     document.body.style.overflow = '';
