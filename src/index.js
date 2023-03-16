@@ -6,8 +6,10 @@ import { getPokemons } from './modules/api.js';
 import {
   postComment, getComment, getLikes, postLikes,
 } from './modules/involvement.js';
+import itemCounter from './modules/itemCounter.js';
 
 const pokemonsContainer = document.getElementById('pokemons-container');
+const pokemonTitle = document.getElementById('pokemon-title');
 const commentPopUp = document.querySelector('.popup');
 
 const addNewLike = async (id) => {
@@ -99,6 +101,8 @@ const displayCommentsPopup = (itemId) => {
 
   pokemonsContainer.innerHTML = '';
   pokemons.forEach((pokemon) => displayPokemons(pokemon));
+  const itemCounts = itemCounter(pokemonsContainer);
+  pokemonTitle.innerText = `Pokemons (${itemCounts})`;
 })();
 
 const postComments = async (itemId, username, comment) => {
