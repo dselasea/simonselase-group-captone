@@ -10,6 +10,7 @@ import itemCounter from './modules/itemCounter.js';
 
 const pokemonsContainer = document.getElementById('pokemons-container');
 const pokemonTitle = document.getElementById('pokemon-title');
+const pokemonLink = document.getElementById('pokemon-link');
 const commentPopUp = document.querySelector('.popup');
 
 const addNewLike = async (id) => {
@@ -103,6 +104,7 @@ const displayCommentsPopup = (itemId) => {
   pokemons.forEach((pokemon) => displayPokemons(pokemon));
   const itemCounts = itemCounter(pokemonsContainer);
   pokemonTitle.innerText = `Pokemons (${itemCounts})`;
+  pokemonLink.innerText = `Pokemons(${itemCounts})`;
 })();
 
 const postComments = async (itemId, username, comment) => {
@@ -126,6 +128,9 @@ const getComments = async (itemId) => {
 
 pokemonsContainer.addEventListener('click', (e) => {
   if (e.target.className === 'btn') {
+    const scrollBarWidth = window.innerWidth - document.body.offsetWidth;
+    document.body.style.margin = `0px ${scrollBarWidth}px 0px 0px`;
+    document.body.style.overflow = 'hidden';
     commentPopUp.classList.add('open');
     displayCommentsPopup(e.target.id);
     getComments(e.target.id);
@@ -134,6 +139,8 @@ pokemonsContainer.addEventListener('click', (e) => {
 
 commentPopUp.addEventListener('click', (e) => {
   if (e.target.id === 'close') {
+    document.body.style.margin = '';
+    document.body.style.overflow = '';
     commentPopUp.classList.remove('open');
   }
 });
