@@ -28,6 +28,7 @@ const displayPokemons = (pokemon) => {
   img.alt = pokemon.name;
 
   const p = document.createElement('p');
+  p.classList.add('pokemon-card-title');
   p.innerText = `${pokemon.name}-${pokemon.type}`;
 
   const actionWrapper = document.createElement('div');
@@ -68,14 +69,14 @@ const displayPokemons = (pokemon) => {
 const displayCommentsPopup = (pokemon) => {
   commentPopUp.innerHTML = `
   <div class="popup-window">
-  <span class="close"><i class="fa-solid fa-x close"></i></span>
+  <span class="close">x</span>
   <div class="comments">
   <img src=${pokemon.image}>
   </div>
   <div>
-    <h1>${pokemon.name} - ${pokemon.type}</h1>
-    <p>Potential moves: ${pokemon.moves.slice(0, 150)}</p>
-    <ul>
+    <h1 class="popup-card-title">${pokemon.name} - ${pokemon.type}</h1>
+    <p class="pokemon-moves">Potential moves: ${pokemon.moves.slice(0, 150)}</p>
+    <ul class="card-info">
       <li>Pokemon height: ${pokemon.height}</li>
       <li>Pokemon weight: ${pokemon.weight}</li>
       <li>Pokemon abilities: ${pokemon.abilities}</li>
