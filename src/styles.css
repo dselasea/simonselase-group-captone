@@ -18,7 +18,7 @@
 
 body {
   font-family: 'Space Grotesk', sans-serif;
-  background-color: var(--background);
+  background-color: var(--white);
   color: var(--black);
   font-size: 1.2rem;
   position: relative;
@@ -56,11 +56,20 @@ a {
   background-color: var(--blue);
   border: 0;
   cursor: pointer;
+  font-weight: bold;
 }
 
 .navigation,
 .nav-items {
   display: flex;
+}
+
+.nav {
+  background: var(--blue);
+  position: fixed;
+  width: 100%;
+  box-shadow: 0 5px 17px -3px rgba(0, 0, 0, 0.1);
+  z-index: 900;
 }
 
 .navigation {
@@ -72,9 +81,24 @@ a {
   padding: 1rem;
 }
 
+footer a {
+  color: var(--white);
+}
+
+.nav-items .nav-links a,
+.logo h4 {
+  color: var(--white);
+  transition: all 0.3s;
+  font-weight: bold;
+}
+
+.nav-items .nav-links a:hover {
+  opacity: 0.8;
+}
+
 .main-content {
   max-width: 1240px;
-  margin: 0 auto;
+  margin: 50px auto 0;
   padding: 24px;
 }
 
@@ -166,7 +190,7 @@ img {
   display: none;
   justify-content: center;
   align-items: flex-start;
-  z-index: 20;
+  z-index: 1000;
 }
 
 .popup.open {
@@ -187,6 +211,7 @@ img {
   float: right;
   cursor: pointer;
   padding: 1rem;
+  z-index: 1000;
 }
 
 .form-control {
@@ -197,6 +222,12 @@ img {
 .form-control textarea {
   padding: 0.8rem 1rem;
   width: 100%;
+}
+
+footer {
+  background: var(--blue);
+  color: var(--white);
+  padding: 2rem 0;
 }
 
 @media screen and (min-width: 768px) {
