@@ -1,7 +1,7 @@
 {
-  "name": "leaderboard",
+  "name": "pokemons",
   "version": "1.0.0",
-  "description": "Leaderboard app with leaderboard API",
+  "description": "Pokemons application with pokemons API",
   "main": "index.js",
   "scripts": {
     "build": "webpack",
@@ -10,15 +10,15 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/BB-Simon/leaderboard.git"
+    "url": "https://github.com/dselasea/simonselase-group-captone.git"
   },
   "keywords": [],
-  "author": "BB Simons <simon.chowdery@gmail.com>",
+  "author": "BB Simons <simon.chowdery@gmail.com> and Daniel Selase Anyidoho <dselasea@gmail.com>",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/BB-Simon/leaderboard/issues"
+    "url": "https://github.com/dselasea/simonselase-group-captone/issues"
   },
-  "homepage": "https://github.com/BB-Simon/leaderboard#readme",
+  "homepage": "https://github.com/dselasea/simonselase-group-captone#readme",
   "devDependencies": {
     "@babel/plugin-transform-modules-commonjs": "^7.21.2",
     "babel-eslint": "^10.1.0",
