@@ -1,0 +1,1 @@
+export default (commentUl) =>  commentUl.childElementCount;

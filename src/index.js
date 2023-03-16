@@ -7,6 +7,7 @@ import {
   postComment, getComment, getLikes, postLikes,
 } from './modules/involvement.js';
 import itemCounter from './modules/itemCounter.js';
+import commentCounter from './modules/commentCounter';
 
 const pokemonsContainer = document.getElementById('pokemons-container');
 const pokemonTitle = document.getElementById('pokemon-title');
@@ -48,7 +49,6 @@ const displayPokemons = (pokemon) => {
 
   const commentEl = document.createElement('span');
   const commentIcon = document.createElement('i');
-  // commentIcon.classList.add('fa-regular', 'fa-comment');
   const commentBtn = document.createElement('button');
   commentBtn.className = 'btn';
   commentBtn.id = pokemon.id;
@@ -68,7 +68,7 @@ const displayPokemons = (pokemon) => {
 const displayCommentsPopup = (itemId) => {
   commentPopUp.innerHTML = `
   <div class="popup-window">
-  <i class="fa-solid fa-x" id="close"></i>
+  <span id="close"><i class="fa-solid fa-x"></i></span>
   <div class="comments">
   <img src='https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${itemId}.png'>
   </div>
@@ -118,12 +118,12 @@ const getComments = async (itemId) => {
   const comments = await getComment(itemId) || [];
   const commentList = document.querySelector('#comment-list');
   let htmlList = '';
-  commentCount.innerHTML = comments.length || 0;
   comments.forEach((comment) => {
     htmlList += `<li>${comment.creation_date} ${comment.username} ${comment.comment}</li>`;
   });
-
+  
   commentList.innerHTML = htmlList;
+  commentCount.innerHTML = commentCounter(commentList) || 0;
   return comments;
 };
 
@@ -140,9 +140,9 @@ pokemonsContainer.addEventListener('click', (e) => {
 
 commentPopUp.addEventListener('click', (e) => {
   if (e.target.id === 'close') {
+    commentPopUp.classList.remove('open');
     document.body.style.margin = '';
     document.body.style.overflow = '';
-    commentPopUp.classList.remove('open');
   }
 });
 
@@ -152,7 +152,6 @@ commentPopUp.addEventListener('click', (e) => {
   const userComment = document.querySelector('#comment');
   if (e.target.id === 'postcomment') {
     postComments(e.target.parentElement.id, userName.value, userComment.value);
-    getComments(e.target.parentElement.id);
     e.preventDefault();
     userName.value = '';
     userComment.value = '';
