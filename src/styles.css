@@ -7,6 +7,7 @@
   --gradient: radial-gradient(circle, rgba(255, 255, 255, 1) 0%, rgba(234, 235, 238, 1) 0%, rgba(0, 212, 255, 1) 100%);
   --white: #fff;
   --black: #333;
+  --background: #dedede;
 }
 
 * {
@@ -17,7 +18,7 @@
 
 body {
   font-family: 'Space Grotesk', sans-serif;
-  background-color: #f3f3f3;
+  background-color: var(--background);
   color: var(--black);
   font-size: 1.2rem;
   position: relative;
