@@ -3,7 +3,8 @@
 :root {
   --orange: #f57d32;
   --purple: #70559c;
-  --blue: #6494ea;
+  --blue: rgba(0,212,255,1);
+  --gradient: radial-gradient(circle, rgba(255,255,255,1) 0%, rgba(234,235,238,1) 0%, rgba(0,212,255,1) 100%);
   --white: #fff;
   --black: #333;
 }
@@ -121,8 +122,8 @@ a {
   position: absolute;
   width: 100%;
   height: 60%;
-  background-color: var(--blue);
-  box-shadow: 0 7px 15px -3px rgba(0, 0, 0, 0.1);
+  background: var(--gradient);
+  box-shadow: inset 0px -7px 29px -4px rgba(0,0,0,0.1);
 }
 
 img {
@@ -134,7 +135,7 @@ img {
 
 .comments {
   text-align: center;
-  background-color: var(--blue);
+  background: var(--gradient);
   border-top-right-radius: 25px;
   border-top-left-radius: 25px;
   margin-bottom: 0.8rem;
