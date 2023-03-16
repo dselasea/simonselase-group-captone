@@ -1,7 +1,7 @@
 export const getPokemons = async () => {
   const promises = [];
 
-  for (let i = 1; i <= 30; i += 1) {
+  for (let i = 1; i <= 102; i += 1) {
     const url = `https://pokeapi.co/api/v2/pokemon/${i}/`;
     promises.push(fetch(url).then((res) => res.json()));
   }

@@ -83,6 +83,7 @@ const displayCommentsPopup = (pokemon) => {
     </ul>
   </div>
   <h4>Comments <span id="comment-count"></span></h4>
+  <h5 class="error"></h5>
   <ul id="comment-list">
   </ul>
   <form id=${pokemon.id}>
@@ -161,11 +162,20 @@ commentPopUp.addEventListener('click', (e) => {
 commentPopUp.addEventListener('click', (e) => {
   const userName = document.querySelector('#name');
   const userComment = document.querySelector('#comment');
+  const errorDisplay = document.querySelector('.error');
   if (e.target.id === 'postcomment') {
-    postComments(e.target.parentElement.id, userName.value, userComment.value);
-    e.preventDefault();
-    userName.value = '';
-    userComment.value = '';
+    if (userName.value === '' && userComment.value === '') {
+      errorDisplay.textContent = 'Please provide a username and comment!';
+      setTimeout(() => {
+        errorDisplay.remove();
+      }, 3000);
+      e.preventDefault();
+    } else {
+      postComments(e.target.parentElement.id, userName.value, userComment.value);
+      e.preventDefault();
+      userName.value = '';
+      userComment.value = '';
+    }
   }
 });
 
