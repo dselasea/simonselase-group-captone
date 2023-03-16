@@ -145,6 +145,8 @@ commentPopUp.addEventListener('click', (e) => {
 
 commentPopUp.addEventListener('click', (e) => {
   if (e.target.id === 'postcomment') {
-    getComments(e.target.parentElement.id);
+    setTimeout(() => {
+      getComments(e.target.parentElement.id);
+    }, 1000);
   }
 });
