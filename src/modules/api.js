@@ -1,4 +1,3 @@
-// eslint-disable-next-line import/prefer-default-export
 export const getPokemons = async () => {
   const promises = [];
 
@@ -19,4 +18,20 @@ export const getPokemons = async () => {
     moves: pokemon.moves?.map((m) => m.move.name).join(','),
     likes: 0,
   }));
+};
+
+export const getSinglePokemon = async (id) => {
+  const res = await fetch(`https://pokeapi.co/api/v2/pokemon/${id}/`);
+  const pokemon = await res.json();
+  return {
+    id: pokemon.id,
+    name: pokemon.name,
+    weight: pokemon.weight,
+    height: pokemon.height,
+    image: pokemon.sprites.front_default,
+    type: pokemon.types?.map((t) => t.type.name).join(','),
+    abilities: pokemon.abilities?.map((a) => a.ability.name).join(','),
+    moves: pokemon.moves?.map((m) => m.move.name).join(','),
+    likes: 0,
+  };
 };

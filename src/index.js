@@ -2,7 +2,7 @@ import './styles.css';
 import '@fortawesome/fontawesome-free/js/fontawesome.js';
 import '@fortawesome/fontawesome-free/js/solid.js';
 import '@fortawesome/fontawesome-free/js/regular.js';
-import { getPokemons } from './modules/api.js';
+import { getPokemons, getSinglePokemon } from './modules/api.js';
 import {
   postComment, getComment, getLikes, postLikes,
 } from './modules/involvement.js';
@@ -65,17 +65,26 @@ const displayPokemons = (pokemon) => {
   pokemonsContainer.appendChild(li);
 };
 
-const displayCommentsPopup = (itemId) => {
+const displayCommentsPopup = (pokemon) => {
   commentPopUp.innerHTML = `
   <div class="popup-window">
-  <span id="close"><i class="fa-solid fa-x"></i></span>
+  <span class="close"><i class="fa-solid fa-x close"></i></span>
   <div class="comments">
-  <img src='https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${itemId}.png'>
+  <img src=${pokemon.image}>
+  </div>
+  <div>
+    <h1>${pokemon.name} - ${pokemon.type}</h1>
+    <p>Potential moves: ${pokemon.moves.slice(0, 150)}</p>
+    <ul>
+      <li>Pokemon height: ${pokemon.height}</li>
+      <li>Pokemon weight: ${pokemon.weight}</li>
+      <li>Pokemon abilities: ${pokemon.abilities}</li>
+    </ul>
   </div>
   <h4>Comments <span id="comment-count"></span></h4>
   <ul id="comment-list">
   </ul>
-  <form id=${itemId}>
+  <form id=${pokemon.id}>
     <h4>Add a comment</h4>
     <div class="form-control">
       <input type="text" placeholder="Your name" id="name" class="name" />
@@ -127,19 +136,20 @@ const getComments = async (itemId) => {
   return comments;
 };
 
-pokemonsContainer.addEventListener('click', (e) => {
+pokemonsContainer.addEventListener('click', async (e) => {
   if (e.target.className === 'btn') {
     const scrollBarWidth = window.innerWidth - document.body.offsetWidth;
     document.body.style.margin = `0px ${scrollBarWidth}px 0px 0px`;
     document.body.style.overflow = 'hidden';
+    const pokemon = await getSinglePokemon(e.target.id);
     commentPopUp.classList.add('open');
-    displayCommentsPopup(e.target.id);
-    getComments(e.target.id);
+    displayCommentsPopup(pokemon);
+    getComments(pokemon.id);
   }
 });
 
 commentPopUp.addEventListener('click', (e) => {
-  if (e.target.parentElement.id === 'close' || e.target.id === 'close') {
+  if (e.target.parentElement.className === 'close' || e.target.className === 'close') {
     commentPopUp.classList.remove('open');
     document.body.style.margin = '';
     document.body.style.overflow = '';
