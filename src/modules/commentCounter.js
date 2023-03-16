@@ -1,1 +1,1 @@
-export default (commentUl) =>  commentUl.childElementCount;
+export default (commentUl) => commentUl.childElementCount;

@@ -7,7 +7,7 @@ import {
   postComment, getComment, getLikes, postLikes,
 } from './modules/involvement.js';
 import itemCounter from './modules/itemCounter.js';
-import commentCounter from './modules/commentCounter';
+import commentCounter from './modules/commentCounter.js';
 
 const pokemonsContainer = document.getElementById('pokemons-container');
 const pokemonTitle = document.getElementById('pokemon-title');
@@ -121,7 +121,7 @@ const getComments = async (itemId) => {
   comments.forEach((comment) => {
     htmlList += `<li>${comment.creation_date} ${comment.username} ${comment.comment}</li>`;
   });
-  
+
   commentList.innerHTML = htmlList;
   commentCount.innerHTML = commentCounter(commentList) || 0;
   return comments;

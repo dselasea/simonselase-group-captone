@@ -2,7 +2,7 @@
  * @jest-environment jsdom
  */
 
-import commentCounter from "../modules/commentCounter.js";
+import commentCounter from '../modules/commentCounter.js';
 
 describe('Counts comments in pokemon cards', () => {
   test('It should return the number of comments in comment-list', () => {
@@ -23,5 +23,5 @@ describe('Counts comments in pokemon cards', () => {
     expect(countElements).not.toBeLessThan(4);
     expect(countElements).toBe(4);
     expect(countElements).toEqual(4);
-  })
-})
+  });
+});
