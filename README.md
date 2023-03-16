@@ -1,7 +1,7 @@
 <a name="readme-top"></a>
 
 <div align="center">
-  <h3><b>Leaderboard</b></h3>
+  <h3><b>Pokemons</b></h3>
 </div>
 
 <!-- TABLE OF CONTENTS -->
@@ -31,9 +31,9 @@
 
 <!-- PROJECT DESCRIPTION -->
 
-# 📖 [Leaderboard] <a name="about-project"></a>
+# 📖 [Pokemons] <a name="about-project"></a>
 
-**Leaderboard**
+**Pokemons**
 
 ## 🛠 Built With <a name="built-with"></a>
 
@@ -46,6 +46,7 @@
     <li><a href="https://www.w3schools.com/html/">HTML</a></li>
     <li><a href="https://developer.mozilla.org/en-US/docs/Web/CSS">CSS</a></li>
     <li><a href="https://www.w3schools.com/js/default.asp">JS</a></li>
+    <li><a href="https://pokeapi.co/docs/v2#pokemon-section">Pokemon API</a></li>
     <li><a href="https://github.com">GIT/Github</a></li>
     <li><a href="https://nodejs.org/en/">NodeJS</a></li>
   </ul>
@@ -54,14 +55,20 @@
 <!-- Features -->
 
 ### Key Features <a name="key-features"></a>
-- **Set up webpack and linter config**
-- **Add markup and basic styles**
-- **Create a new game on page load**
-- **Display all socres in the leaderboard**
-- **Create new score**
-- **Create new score**
-- **Get all scores**
-- **store game id and all scores in local storage**
+- **A home page showing a list of items that you can "like."**
+- **A popup window with more data about an item that you can use to comment on it.**
+- **Pokemos APIs**
+- **Get a list of items with a unique item id (or generate the unique id).**
+- **For a given item, get detailed information about it.**
+- **The Involvement API to show the item likes**
+- **When the user clicks on the Like button of an item, the interaction is recorded in the Involvement API and the screen is updated**
+- **When the user clicks on the "Comments" button, the Comments popup appears**
+- **When the popup loads, the webapp retrieves data from:**
+    - **The selected API and shows details about the selected item.**
+    - **The Involvement API to show the item comments.**
+- **Counters**
+    - **The number of items (home).**
+    - **The number of comments (comments popup).**
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -94,22 +101,31 @@ In order to run this project you need:
 
 > Clone this repository to your desired folder:
 
-git clone https://github.com/BB-Simon/leaderboard
+git clone https://github.com/BB-Simon/Pokemons
 
 ### Run
 - `npm install`
 - `npm start`
+
 to built:
 - `npm run build`
 
+to run the test:
+- `npm test`
+
 <!-- AUTHORS -->
 
-## 👥 Author <a name="authors"></a>
+## 👥 Authors <a name="authors"></a>
 
 👤  **BB-Simon**
 
 - GitHub: [@githubhandle](https://github.com/BB-Simon) 
 - LinkedIn: [LinkedIn](https://www.linkedin.com/in/bb-simon/) 
+
+👤  **Daniel Selase Anyidoho**
+
+- GitHub: [@githubhandle](https://github.com/dselasea) 
+- LinkedIn: [LinkedIn](https://www.linkedin.com/in/dselasea/) 
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -127,7 +143,7 @@ to built:
 
 Contributions, issues, and feature requests are welcome!
 
-Feel free to check the [issues page](https://github.com/BB-Simon/leaderboard/issues).
+Feel free to check the [issues page](https://github.com/dselasea/simonselase-group-captone/issues).
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -143,7 +159,7 @@ If you like this project, you are welcomed to star and fork it. You can also sha
 
 ## 🙏 Acknowledgments <a name="acknowledgements"></a>
 
-I would like to thank Microverse for their idea of  the idea of Leaderboard project.
+I would like to thank Microverse for their idea of  the idea of Pokemons project.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
