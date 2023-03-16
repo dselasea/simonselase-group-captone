@@ -1,0 +1,1 @@
+export default (pokemonContainer) => pokemonContainer.childElementCount;

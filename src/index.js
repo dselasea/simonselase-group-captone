@@ -6,8 +6,11 @@ import { getPokemons } from './modules/api.js';
 import {
   postComment, getComment, getLikes, postLikes,
 } from './modules/involvement.js';
+import itemCounter from './modules/itemCounter.js';
 
 const pokemonsContainer = document.getElementById('pokemons-container');
+const pokemonTitle = document.getElementById('pokemon-title');
+const pokemonLink = document.getElementById('pokemon-link');
 const commentPopUp = document.querySelector('.popup');
 
 const addNewLike = async (id) => {
@@ -15,6 +18,7 @@ const addNewLike = async (id) => {
 };
 
 const displayPokemons = (pokemon) => {
+  let likesCount = pokemon.likes;
   const li = document.createElement('li');
   li.classList.add('pokemon-list');
 
@@ -31,10 +35,14 @@ const displayPokemons = (pokemon) => {
   const hearIcon = document.createElement('span');
   hearIcon.innerHTML = '<i class="fa-regular fa-heart"></i>';
   const info = document.createElement('span');
-  info.innerText = `Likes ${pokemon.likes > 0 ? pokemon.likes : ''}`;
+  info.setAttribute('id', `like-${pokemon.id}`);
+  info.innerText = `Likes ${likesCount > 0 ? likesCount : ''}`;
   likeEl.appendChild(hearIcon);
   likeEl.appendChild(info);
   likeEl.addEventListener('click', () => {
+    likesCount += 1;
+    const el = document.getElementById(`like-${pokemon.id}`);
+    el.innerText = `Likes ${likesCount}`;
     addNewLike(pokemon.id);
   });
 
@@ -95,6 +103,9 @@ const displayCommentsPopup = (itemId) => {
 
   pokemonsContainer.innerHTML = '';
   pokemons.forEach((pokemon) => displayPokemons(pokemon));
+  const itemCounts = itemCounter(pokemonsContainer);
+  pokemonTitle.innerText = `Pokemons (${itemCounts})`;
+  pokemonLink.innerText = `Pokemons(${itemCounts})`;
 })();
 
 const postComments = async (itemId, username, comment) => {
@@ -118,6 +129,9 @@ const getComments = async (itemId) => {
 
 pokemonsContainer.addEventListener('click', (e) => {
   if (e.target.className === 'btn') {
+    const scrollBarWidth = window.innerWidth - document.body.offsetWidth;
+    document.body.style.margin = `0px ${scrollBarWidth}px 0px 0px`;
+    document.body.style.overflow = 'hidden';
     commentPopUp.classList.add('open');
     displayCommentsPopup(e.target.id);
     getComments(e.target.id);
@@ -126,6 +140,8 @@ pokemonsContainer.addEventListener('click', (e) => {
 
 commentPopUp.addEventListener('click', (e) => {
   if (e.target.id === 'close') {
+    document.body.style.margin = '';
+    document.body.style.overflow = '';
     commentPopUp.classList.remove('open');
   }
 });
