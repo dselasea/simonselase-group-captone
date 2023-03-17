@@ -8,11 +8,13 @@ import {
 } from './modules/involvement.js';
 import itemCounter from './modules/itemCounter.js';
 import commentCounter from './modules/commentCounter.js';
+import displayAboutPopup from './modules/about.js';
 
 const pokemonsContainer = document.getElementById('pokemons-container');
 const pokemonTitle = document.getElementById('pokemon-title');
 const pokemonLink = document.getElementById('pokemon-link');
 const commentPopUp = document.querySelector('.popup');
+const aboutLink = document.querySelector('.about');
 
 const addNewLike = async (id) => {
   await postLikes({ item_id: id });
@@ -137,6 +139,11 @@ const getComments = async (itemId) => {
   commentCount.innerHTML = commentCounter(commentList) || 0;
   return comments;
 };
+
+aboutLink.addEventListener('click', () => {
+  commentPopUp.classList.add('open');
+  displayAboutPopup();
+});
 
 pokemonsContainer.addEventListener('click', async (e) => {
   if (e.target.className === 'btn') {
