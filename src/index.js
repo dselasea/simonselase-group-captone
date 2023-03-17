@@ -77,7 +77,7 @@ const displayCommentsPopup = (pokemon) => {
   </div>
   <div>
     <h1 class="popup-card-title">${pokemon.name} - ${pokemon.type}</h1>
-    <p class="pokemon-moves">Potential moves: ${pokemon.moves.slice(0, 150)}</p>
+    <p class="pokemon-moves">Potential moves: ${pokemon.moves.slice(0, 100)}...</p>
     <ul class="card-info">
       <li>Pokemon height: ${pokemon.height}</li>
       <li>Pokemon weight: ${pokemon.weight}</li>
